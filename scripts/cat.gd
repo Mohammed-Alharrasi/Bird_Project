@@ -38,7 +38,7 @@ func _physics_process(delta):
 	var overlapping_areas = area1.get_overlapping_areas()
 	if area2 in overlapping_areas:
 		print("Collision detected with bird, resetting position.")
-		%XROrigin3D.global_transform.origin = Vector3(-53,12,0)
+		%CharacterBody3D.position = Vector3(-53,12,0)
 #	var area = %playerbird/Area3D as Area3D  
 #	var cat_body = $RigidBody3D as RigidBody3D# Adjust the path to your Area3D node
 #	if area.overlaps_body(cat_body):

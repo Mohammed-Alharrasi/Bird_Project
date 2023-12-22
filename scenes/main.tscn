@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://d46wrkgdeynk"]
+[gd_scene load_steps=72 format=3 uid="uid://d46wrkgdeynk"]
 
 [ext_resource type="Script" path="res://scripts/initialize.gd" id="1_6pc8s"]
 [ext_resource type="Texture2D" uid="uid://dsxdaxn515iuu" path="res://materials/stone floor/Stone_Floor_006_basecolor.jpg" id="2_su1o8"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://diadvnr0nqebe" path="res://models/twig/scene.gltf" id="25_1tywe"]
 [ext_resource type="PackedScene" uid="uid://lbyy13khyfix" path="res://models/birds_nest/scene.gltf" id="26_0eu24"]
 [ext_resource type="PackedScene" uid="uid://qtdkqj4jw5gg" path="res://models/egg/scene.gltf" id="27_twlre"]
+[ext_resource type="PackedScene" uid="uid://ccgxoylolnm8r" path="res://models/house/scene.gltf" id="29_3oj3k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_osj4q"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -75,7 +76,7 @@ shader_parameter/SCALE = 0.5
 shader_parameter/SOFTNESS = 0.65
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fh3lx"]
-size = Vector3(0.07, 0.1, 0.09)
+size = Vector3(0.07, 0.0121051, 0.0485057)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n17ye"]
 size = Vector3(0.1, 0.1, 1)
@@ -101,16 +102,6 @@ albedo_color = Color(0.282353, 0.282353, 0.282353, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_emqep"]
 size = Vector3(1, 0.1, 3)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5y57"]
-radius = 0.03
-height = 0.1
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_rcqvb"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_w2vt2"]
-viewport_path = NodePath("SubViewport")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mjklu"]
 radius = 0.1
@@ -147,13 +138,13 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 height = 10.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_l22gg"]
-size = Vector3(6, 0.5, 6)
+size = Vector3(6, 0.5, 10)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6lj0q"]
 height = 10.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dc0rn"]
-size = Vector3(6, 0.5, 6)
+size = Vector3(6, 0.5, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b18qs"]
 size = Vector3(6, 1.4, 6)
@@ -165,6 +156,22 @@ size = Vector3(0.5, 0.5, 1.5)
 size = Vector3(0.23, 0.1, 0.15)
 
 [sub_resource type="GDScript" id="GDScript_86h4d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhedx"]
+size = Vector3(3.67165, 1.34183, 1.57975)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5y57"]
+radius = 0.03
+height = 0.1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4qeeu"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2hn0p"]
+viewport_path = NodePath("environment/NavigationRegion3D/post/Other Bird/Interact prompt/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b13ls"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_6pc8s")
@@ -189,6 +196,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_trsr2")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.968718, 0, -0.248166, 0, 1, 0, 0.248166, 0, 0.968718, 41.835, 10.5, -41.9761)
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -204,7 +213,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CharacterBody3D/XROrigin3D/XRCamera3D"]
-visible = false
 
 [node name="ColorRect2" type="ColorRect" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer"]
 material = SubResource("ShaderMaterial_rcqm8")
@@ -304,12 +312,12 @@ color = Color(0, 0, 0, 1)
 
 [node name="playerbird" parent="CharacterBody3D/XROrigin3D/XRCamera3D" instance=ExtResource("3_a15sd")]
 unique_name_in_owner = true
-transform = Transform3D(-18, 0, -5.43585e-06, 0, 18, 0, 2.71792e-06, 0, -36, 0.008, -1.58, 2.39)
+transform = Transform3D(-18, 0, -5.72205e-06, 0, 18, 0, 2.86102e-06, 0, -36, 0.00799942, -1.58, 2.39)
 
 [node name="Area3D" type="Area3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/playerbird"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/playerbird/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, -1.77636e-13, 0, 1, -3.40515e-09, 0.0495205, 0.0112232)
+transform = Transform3D(1, 0, 0, 0, 1, 0, -2.06057e-13, 0, 1, -1.20199e-08, 0.00628391, 0.039818)
 shape = SubResource("BoxShape3D_fh3lx")
 
 [node name="beak" type="Node3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D"]
@@ -355,7 +363,7 @@ hand_material_override = SubResource("StandardMaterial3D_7wdvc")
 [node name="SeedCount" type="Label3D" parent="CharacterBody3D/XROrigin3D/RightController"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0137654, 0.0256566, -0.0241474)
-text = "Number of Seeds Collected: 0"
+text = "Seeds: 0"
 font_size = 7
 script = ExtResource("13_ac1b2")
 
@@ -367,36 +375,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.36)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/XROrigin3D/talon/Area3D"]
 shape = SubResource("BoxShape3D_emqep")
-
-[node name="Other Bird" type="StaticBody3D" parent="."]
-transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, 0, 0.069, -3.363)
-script = ExtResource("15_crskb")
-
-[node name="bird" parent="Other Bird" instance=ExtResource("3_ktigt")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Other Bird"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0.0552927, 0.0253984)
-shape = SubResource("CapsuleShape3D_q5y57")
-
-[node name="speech_bubble" parent="Other Bird" instance=ExtResource("16_pxklc")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.156123, 0.0266257)
-visible = false
-texture = SubResource("ViewportTexture_rcqvb")
-
-[node name="Other Bird2" type="StaticBody3D" parent="."]
-transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, 1.55301, 0.069, -3.363)
-script = ExtResource("18_fjr52")
-
-[node name="bird" parent="Other Bird2" instance=ExtResource("3_ktigt")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Other Bird2"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0.0552927, 0.0253984)
-shape = SubResource("CapsuleShape3D_q5y57")
-
-[node name="speech_bubble" parent="Other Bird2" instance=ExtResource("16_pxklc")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.156123, 0.0266257)
-visible = false
-texture = SubResource("ViewportTexture_w2vt2")
 
 [node name="environment" type="Node3D" parent="."]
 script = ExtResource("20_winf1")
@@ -636,6 +614,7 @@ shape = SubResource("BoxShape3D_dc0rn")
 
 [node name="nestbird" type="StaticBody3D" parent="environment/NavigationRegion3D/WoodPost"]
 unique_name_in_owner = true
+disable_mode = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environment/NavigationRegion3D/WoodPost/nestbird"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.2, 0)
@@ -648,6 +627,7 @@ transform = Transform3D(0.097, 0, 0, 0, 0.097, 0, 0, 0, 0.097, 0, 10.5, 0)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.2883, 0)
 visible = false
+disable_mode = 2
 
 [node name="egg1" parent="environment/NavigationRegion3D/WoodPost/eggs" groups=["Eggs"] instance=ExtResource("27_twlre")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
@@ -675,6 +655,7 @@ text = "Time for eggs to hatch (s): 30"
 [node name="chicks" type="StaticBody3D" parent="environment/NavigationRegion3D/WoodPost"]
 unique_name_in_owner = true
 transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, 0, 11.0318, 0)
+disable_mode = 2
 
 [node name="bird1" parent="environment/NavigationRegion3D/WoodPost/chicks" groups=["Chicks"] instance=ExtResource("3_ktigt")]
 
@@ -714,6 +695,129 @@ script = SubResource("GDScript_86h4d")
 
 [node name="courtyard" parent="environment/NavigationRegion3D" instance=ExtResource("19_47ydm")]
 
+[node name="post" type="StaticBody3D" parent="environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.11, 0, -44.5974)
+script = ExtResource("24_8m31n")
+
+[node name="pole" type="MeshInstance3D" parent="environment/NavigationRegion3D/post"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+mesh = SubResource("CylinderMesh_30kyg")
+
+[node name="top" type="MeshInstance3D" parent="environment/NavigationRegion3D/post"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.25, 0)
+mesh = SubResource("BoxMesh_l22gg")
+
+[node name="poleCollisionShape3D" type="CollisionShape3D" parent="environment/NavigationRegion3D/post"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("CylinderShape3D_6lj0q")
+
+[node name="topCollisionShape3D2" type="CollisionShape3D" parent="environment/NavigationRegion3D/post"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.25, 0)
+shape = SubResource("BoxShape3D_dc0rn")
+
+[node name="Area3D" type="Area3D" parent="environment/NavigationRegion3D/post"]
+
+[node name="poleCollisionShape3D" type="CollisionShape3D" parent="environment/NavigationRegion3D/post/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("CylinderShape3D_6lj0q")
+
+[node name="topCollisionShape3D2" type="CollisionShape3D" parent="environment/NavigationRegion3D/post/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.25, 0)
+shape = SubResource("BoxShape3D_dc0rn")
+
+[node name="house" parent="environment/NavigationRegion3D/post" instance=ExtResource("29_3oj3k")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.849998, 10.55, -3.67361)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="environment/NavigationRegion3D/post/house"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/NavigationRegion3D/post/house/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608477, 0.261137)
+shape = SubResource("BoxShape3D_nhedx")
+
+[node name="Other Bird" type="StaticBody3D" parent="environment/NavigationRegion3D/post"]
+transform = Transform3D(16.2025, 0, 7.84095, 0, 18, 0, -7.84095, 0, 16.2025, -2.22276, 10.5785, -1.42254)
+script = ExtResource("15_crskb")
+
+[node name="bird" parent="environment/NavigationRegion3D/post/Other Bird" instance=ExtResource("3_ktigt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/NavigationRegion3D/post/Other Bird"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0.0552927, 0.0253984)
+shape = SubResource("CapsuleShape3D_q5y57")
+
+[node name="speech_bubble" parent="environment/NavigationRegion3D/post/Other Bird" instance=ExtResource("16_pxklc")]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.156123, 0.0266257)
+visible = false
+texture = SubResource("ViewportTexture_4qeeu")
+
+[node name="Interact prompt" type="Sprite3D" parent="environment/NavigationRegion3D/post/Other Bird"]
+transform = Transform3D(0.05, 0, -9.31323e-10, 0, 0.05, 0, 9.31323e-10, 0, 0.05, 0, 0.111921, 0)
+texture = SubResource("ViewportTexture_2hn0p")
+
+[node name="SubViewport" type="SubViewport" parent="environment/NavigationRegion3D/post/Other Bird/Interact prompt"]
+transparent_bg = true
+size = Vector2i(128, 20)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="environment/NavigationRegion3D/post/Other Bird/Interact prompt/SubViewport"]
+
+[node name="Label" type="Label" parent="environment/NavigationRegion3D/post/Other Bird/Interact prompt/SubViewport/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -13.0
+offset_right = 52.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RT to Interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Other Bird2" type="StaticBody3D" parent="environment/NavigationRegion3D/post"]
+transform = Transform3D(12.217, 0, -13.2191, 0, 18, 0, 13.2191, 0, 12.217, 1.61175, 10.5, -0.719795)
+script = ExtResource("18_fjr52")
+
+[node name="bird" parent="environment/NavigationRegion3D/post/Other Bird2" instance=ExtResource("3_ktigt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/NavigationRegion3D/post/Other Bird2"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0.0552927, 0.0253984)
+shape = SubResource("CapsuleShape3D_q5y57")
+
+[node name="speech_bubble" parent="environment/NavigationRegion3D/post/Other Bird2" instance=ExtResource("16_pxklc")]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.156123, 0.0266257)
+visible = false
+texture = SubResource("ViewportTexture_b13ls")
+
+[node name="Interact prompt" type="Sprite3D" parent="environment/NavigationRegion3D/post/Other Bird2"]
+transform = Transform3D(0.05, 0, -9.31323e-10, 0, 0.05, 0, 9.31323e-10, 0, 0.05, 0, 0.111921, 0)
+texture = SubResource("ViewportTexture_2hn0p")
+
+[node name="SubViewport" type="SubViewport" parent="environment/NavigationRegion3D/post/Other Bird2/Interact prompt"]
+transparent_bg = true
+size = Vector2i(128, 20)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="environment/NavigationRegion3D/post/Other Bird2/Interact prompt/SubViewport"]
+
+[node name="Label" type="Label" parent="environment/NavigationRegion3D/post/Other Bird2/Interact prompt/SubViewport/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -13.0
+offset_right = 52.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RT to Interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/LeftController" to="CharacterBody3D/XROrigin3D" method="_on_button_pressed"]
 [connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/LeftController" to="CharacterBody3D/XROrigin3D/XRCamera3D/beak" method="_on_button_pressed"]
 [connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/LeftController" to="CharacterBody3D/XROrigin3D/talon" method="_on_button_pressed"]
@@ -725,9 +829,9 @@ script = SubResource("GDScript_86h4d")
 [connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/RightController" to="CharacterBody3D/XROrigin3D" method="_on_button_pressed"]
 [connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/RightController" to="CharacterBody3D/XROrigin3D/XRCamera3D/beak" method="_on_button_pressed"]
 [connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/RightController" to="CharacterBody3D/XROrigin3D/talon" method="_on_button_pressed"]
-[connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/RightController" to="Other Bird" method="_on_right_controller_button_pressed"]
-[connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/RightController" to="Other Bird2" method="_on_right_controller_button_pressed"]
 [connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/RightController" to="environment" method="_on_right_controller_button_pressed"]
+[connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/RightController" to="environment/NavigationRegion3D/post/Other Bird" method="_on_right_controller_button_pressed"]
+[connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/RightController" to="environment/NavigationRegion3D/post/Other Bird2" method="_on_right_controller_button_pressed"]
 [connection signal="button_released" from="CharacterBody3D/XROrigin3D/RightController" to="CharacterBody3D/XROrigin3D/XRCamera3D/beak" method="_on_button_released"]
 [connection signal="button_released" from="CharacterBody3D/XROrigin3D/RightController" to="CharacterBody3D/XROrigin3D/talon" method="_on_button_released"]
 [connection signal="input_vector2_changed" from="CharacterBody3D/XROrigin3D/RightController" to="CharacterBody3D/XROrigin3D" method="process_input"]

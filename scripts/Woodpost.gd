@@ -28,11 +28,14 @@ func _ready():
 	worms = get_tree().get_nodes_in_group("Worms")
 	nest = %nestbird# Adjust the path to your Nest node
 	nest.visible = false  # Initially hide the nest
+	%nestbird/CollisionShape3D.disabled = true  # Initially disable the nest collision
 	seed_count = globals.active_seeds
 	eggs = %eggs
 	eggs.visible = false
+	%eggs/CollisionShape3D.disabled = true  # Initially disable the eggs collision
 	chicks = %chicks
 	chicks.visible = false
+	%chicks/CollisionShape3D.disabled = true  # Initially disable the chicks collision
 	timer.wait_time = 10  # Set your desired time in seconds
 	timer.one_shot = true
 	
@@ -112,11 +115,14 @@ func build_nest():
 		grabbable_twig.hide()
 
 	nest.visible = true
+	%CharacterBody3D.postion += Vector3(0, 1, 0)
+	%nestbird/CollisionShape3D.disabled = false  # enable the nest collision
 	nest.collision_layer |= 1  # Add to collision layer 1
 	nestBuilt = true
 
 func lay_eggs():
 	eggs.visible = true
+	%eggs/CollisionShape3D.disabled = false  # enable the eggs collision
 	eggs.collision_layer |= 1  # Add to collision layer 1
 	egglayed = true
 	
@@ -125,8 +131,10 @@ func hatch_eggs():
 #	print("Hatching eggs...")
 #	print("Eggs visible before: ", eggs.visible)
 	eggs.visible = false
+	%eggs/CollisionShape3D.disabled = true  # disable the eggs collision
 #	print("Eggs visible after: ", eggs.visible)
 	chicks.visible = true
+	%chicks/CollisionShape3D.disabled = false  # enable the chicks collision
 	chicks.collision_layer |= 1
 	egghatched = true
 

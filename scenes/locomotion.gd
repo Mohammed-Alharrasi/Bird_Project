@@ -46,26 +46,8 @@ func flying_movement(delta):
 	var right_to_camera = Vector3($XRCamera3D.global_position - $RightController.global_position)
 	var move_dir = left_to_camera + right_to_camera
 	move_dir.y = 0
-#	direction = direction.rotated(Vector3(1,0,0), 15)
-#	var slope_normal = Vector3.UP.rotated((Vector3(1,0,0), 15)
-#	var projected_direction = direction - (direction.dot(slope_normal) - )
-#	var camera_vector = Vector3(0, 0, -1).rotated(Vector3.UP, $XRCamera3D.global_rotation.y)#.rotated(Vector3(1,0,0), 15)
-#	move_dir += camera_vector * 0.6
-#	camera_vector.rotated(Vector3(0,1,0), $XRCamera3D.global_rotation.y)
-#	camera_vector.rotated(Vector3(1,0,0), $XRCamera3D.global_rotation.x)
-#	camera_vector.rotated(Vector3(0,0,1), $XRCamera3D.global_rotation.z)
-#	camera_vector.rotated(Vector3(0,1,0), -90)
-#	camera_vector.y = 0
-#	the player should not move backwards when flying, but I will implement slowing down
-#	if (direction.dot(camera_vector) > 0):
-#	var dvelocity = move_dir * acc_scale * delta
-#	velocity += dvelocity
 	self.get_parent().velocity += move_dir * max_speed * 5
 	var point_direction = self.get_parent().velocity.rotated(Vector3.UP, -$XRCamera3D.global_rotation.y).normalized() * 0.3
-#			$XRCamera3D/Pivot/pointdirection.position = movement_vector.rotated(Vector3.UP, $XRCamera3D.global_rotation.y).normalized() * 0.3
-#	$XRCamera3D/Pivot/pointdirection.position = point_direction
-#	$XRCamera3D/Pivot/Arrow.look_at($XRCamera3D/Pivot/pointdirection.global_position)
-#	$TalonPivot.rotation.z = $XRCamera3D/Pivot/Arrow.rotation.y + $XRCamera3D.rotation.y
 	return point_direction
 
 func torso_movement(delta):
@@ -82,13 +64,7 @@ func _process(delta):
 #	if steering != "flying":
 	self.get_parent().velocity.x *= 0
 	self.get_parent().velocity.z *= 0
-#	else:
-#		var drag = -velocity * 0.5 * delta
-#		drag.y = 0
-#		velocity += drag
 		
-#	if ((previous_flap_height - ($LeftController.position.y + $RightController.position.y)) / delta) > gravity:
-#		velocity.y += (previous_flap_height - ($LeftController.position.y + $RightController.position.y)) / delta
 	var ldiff = previous_left_height - $LeftController.position.y
 	var rdiff = previous_right_height - $RightController.position.y
 	if !uninitialized_controllers:
@@ -103,24 +79,11 @@ func _process(delta):
 		self.get_parent().velocity.y += -gravity * delta 
 	else:
 		steering = ground_steering
-#		self.get_parent().position.y = 0
 		if self.get_parent().velocity.y < 0:
 			self.get_parent().velocity.y = 0
 	
 	if self.get_parent().position.y < 0:
 		self.get_parent().position.y = 0
-#	time racing
-#	if steering == "flying":
-#		time_elapsed += delta
-#		var new_time_string = "Time: " + str(snappedf(time_elapsed, 0.01))
-#		if (int(snappedf(time_elapsed, 0.01) * 100.0) % 100) == 0:
-#			new_time_string += ".00"
-#		elif (int(snappedf(time_elapsed, 0.01) * 100.0) % 10) == 0:
-#			new_time_string += "0"
-#		$XRCamera3D/Pivot/SubViewport/CanvasLayer/LineEdit.text = new_time_string + "s"
-#		$XRCamera3D/Pivot/SubViewport.size.x = $XRCamera3D/Pivot/SubViewport/CanvasLayer/LineEdit.size.x
-#		$XRCamera3D/Score.mesh.size.x = $XRCamera3D/Pivot/SubViewport/CanvasLayer/LineEdit.size.x * 0.1 / $XRCamera3D/Pivot/SubViewport/CanvasLayer/LineEdit.size.y
-#		$XRCamera3D/Score.position.x = -0.45 + ($XRCamera3D/Score.mesh.size.x / 2)
 
 	# Forward translation
 	if steering == "flying":
@@ -146,7 +109,6 @@ func _process(delta):
 		$XRCamera3D/Pivot/PointDirection.position = point_direction
 		$XRCamera3D/Pivot/ArrowPivot.look_at($XRCamera3D/Pivot/PointDirection.global_position)
 	
-#	self.position += velocity * delta
 	self.get_parent().move_and_slide()
 	
 	if print_timer > -1:
@@ -163,10 +125,6 @@ func _process(delta):
 	# keep arrow parallel with the XROrigin
 	$XRCamera3D/Pivot.rotation.x = -$XRCamera3D.rotation.x
 	$XRCamera3D/Pivot.rotation.z = -$XRCamera3D.rotation.z
-	
-#	# keep Talons under the camera
-#	$TalonPivot.position.x = $XRCamera3D.position.x
-#	$TalonPivot.position.z = $XRCamera3D.position.z
 	
 	# check for if in dead zone
 	if self.input_vector.x < self.smooth_turn_dead_zone && self.input_vector.x > -self.smooth_turn_dead_zone:
@@ -216,18 +174,3 @@ func _on_button_pressed(name):
 			turn_mode = "snap"
 		else: 
 			turn_mode = "smooth"
-#	elif name == "menu_button":
-#		if steering == "flying":
-#			steering = "view-directed"
-#		else: 
-#			steering = "flying"
-#		self.global_position = Vector3(673, 0.1, -262)
-#		self.rotation.y = 180
-#		$"XRCamera3D/Score".visible = true
-#		$"TalonPivot".visible = true
-#		$"XRCamera3D/Pivot/SubViewport/CanvasLayer/LineEdit".add_theme_color_override("font_color", Color(1, 1, 1))
-#		time_elapsed = 0
-#		for child in $"../FLying Area/meese".get_children():
-#			child.position.y = 0.014
-#		self.rotation.x += deg_to_rad(15) Vector3(2.875, 5.55, 0.3)
-#		self.rotation.y += deg_to_rad(15) $"~/Starting Area/hut/hut2/door/door/handle".global_position

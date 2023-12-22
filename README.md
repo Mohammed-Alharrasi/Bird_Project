@@ -2,6 +2,7 @@
 
 Welcome to Bird Simulator VR, an immersive virtual reality experience that lets you live the life of a bird. Explore a richly detailed environment, interact with other birds, collect items, and evade predators, all from a unique bird's-eye view.
 
+
 ## Controls
 
 ### Ground Movement
@@ -22,6 +23,7 @@ Welcome to Bird Simulator VR, an immersive virtual reality experience that lets 
 - **Poop**: Press the A or X button to poop at any time.
 - **Toggle Ground Steering Mode**: Press A or X (between view and hand-directed steering).
 - **Toggle Turn Mode**: Press B or Y (between smooth and snap turn).
+
 
 ## In-Depth Functionalities
 
@@ -47,9 +49,9 @@ Push left or right to rotate about the camera’s position.
 - **Worm Interaction**: The player needs to bend over and peck worms to carry them to each of the chicks in their nest to feed them.
 - **Cat Interaction**: If the player comes in contact with the cat, they will respawn at their nest. The cat uses pathfinding to avoid obstacles.
 
-
 ### Vignette
 - A vignette covers the area surrounding each eye to help with motion sickness.
+
 
 ## Third-Party Assets
 
@@ -72,6 +74,7 @@ Push left or right to rotate about the camera’s position.
 - GART_PJ_TWIG_01 by peijee - [Link](https://sketchfab.com/3d-models/gart-pj-twig-01-007c76ffa8dc4493b1f1018cdde51e2d)
 - Worm game-ready (FREE) by Arjun S R - [Link](https://sketchfab.com/3d-models/worm-game-ready-free-abb645445dd24c47a40052afb235336e)
 - Bird Poop Article - [Audubon](https://www.audubon.org/magazine/summer-2022/bird-poop-next-frontier-avian-conservation)
+- House Simpson - [Link](https://skfb.ly/o77Wy)
 
 ## License
 

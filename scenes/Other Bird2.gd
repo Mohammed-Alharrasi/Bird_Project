@@ -11,13 +11,13 @@ const lines: Array[String] = [
 	"You'll get hungry on your own, so you'll need to know about food.",
 	"You've loved worms since you were a chick, but that's chick food.",
 	"Now that you're an adult, you eat seeds like the rest of us.",
-	"Good luck darling, and watch out for cats."
+	"Good luck, and watch out for cats."
 ]
 
 func _on_right_controller_button_pressed(name):
 	if (
 		name == "trigger_click" &&
-		global_position.distance_to($"../CharacterBody3D/XROrigin3D/XRCamera3D".global_position) < 3
+		global_position.distance_to(%XRCamera3D.global_position) < 3
 	):
 		if (
 			DialogManager.is_dialog_active &&
@@ -35,14 +35,14 @@ func _on_right_controller_button_pressed(name):
 				
 			DialogManager._show_text_box()
 		else:
-			print("start2")
 			active = true
+			$"Interact prompt".visible = false
 #			DialogManager.cancel()
 			DialogManager.start_dialog(global_position + Vector3(0, 2.4, 0), lines)
 	elif (
 		name == "trigger_click" &&
 		active
 	):
-		print("far1")
 		DialogManager.cancel()
 		active = false
+		$"Interact prompt".visible = true
