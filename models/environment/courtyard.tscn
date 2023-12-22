@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhmjgu6ft6bdg"]
+
+[ext_resource type="PackedScene" uid="uid://88fr34uep604" path="res://models/environment/environment.gltf" id="1_i2h5r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8l7uk"]
+size = Vector3(600, 80, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t6wlu"]
+size = Vector3(20, 80, 310)
+
+[node name="courtyard" instance=ExtResource("1_i2h5r")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, 145)
+shape = SubResource("BoxShape3D_8l7uk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, -145)
+shape = SubResource("BoxShape3D_8l7uk")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -310, 40, 0)
+shape = SubResource("BoxShape3D_t6wlu")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 310, 40, 0)
+shape = SubResource("BoxShape3D_t6wlu")

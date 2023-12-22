@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7hqmkrlghnrd"]
+
+[ext_resource type="PackedScene" uid="uid://c6txx64kasdq0" path="res://models/picnic_bench/scene.gltf" id="1_sbeli"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h4d8s"]
+size = Vector3(20.0287, 0.291756, 5.34695)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uocn1"]
+size = Vector3(20.0287, 0.291756, 8.8844)
+
+[node name="picnic_bench" instance=ExtResource("1_sbeli")]
+
+[node name="Sketchfab_model" parent="." index="0"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 3.83926, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.50644, -7.00348)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.020843, 0)
+shape = SubResource("BoxShape3D_h4d8s")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.020843, 14.0041)
+shape = SubResource("BoxShape3D_h4d8s")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.031, 7)
+shape = SubResource("BoxShape3D_uocn1")

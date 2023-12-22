@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://hh8fniu5yus1"]
+
+[ext_resource type="PackedScene" uid="uid://c1yv2kubguo2" path="res://models/maple_tree/scene.gltf" id="1_xg6b7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_76lqe"]
+height = 150.0
+radius = 5.0
+
+[node name="tree" instance=ExtResource("1_xg6b7")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.128687, 0)
+
+[node name="Material22069" parent="Sketchfab_model/Collada visual scene group/SketchUp" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.8292e-16, -1.27416)
+
+[node name="Material22070" parent="Sketchfab_model/Collada visual scene group/SketchUp" index="1"]
+visible = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 73.713, 0)
+shape = SubResource("CylinderShape3D_76lqe")

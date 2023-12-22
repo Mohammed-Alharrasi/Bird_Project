@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://4mlb1jnvm8mt"]
+
+[ext_resource type="PackedScene" uid="uid://cqeh84r6wfp3l" path="res://models/park_bench/scene.gltf" id="1_vkkb2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uaomt"]
+size = Vector3(214.756, 1, 49.7992)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jfrjl"]
+size = Vector3(7.99229, 2.522, 60.83)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icrjd"]
+size = Vector3(214.756, 1, 55)
+
+[node name="bench" instance=ExtResource("1_vkkb2")]
+
+[node name="Sketchfab_model" parent="." index="0"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 0, 0, 0)
+
+[node name="4ebb420a5e774324b45c3c4244fbaf15_fbx" parent="Sketchfab_model" index="0"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0)
+
+[node name="Bench" parent="Sketchfab_model/4ebb420a5e774324b45c3c4244fbaf15_fbx/RootNode" index="0"]
+transform = Transform3D(-1, -1.50996e-07, 0, 1.50996e-07, -1, 0, 0, 0, 1, 0, -3.279, 0)
+
+[node name="Bench_Bench Mat_0" parent="Sketchfab_model/4ebb420a5e774324b45c3c4244fbaf15_fbx/RootNode/Bench" index="0"]
+transform = Transform3D(0.999999, -1.42109e-13, 0, 1.42109e-13, 0.999999, 0, -1.18585e-20, 2.4869e-14, 1, 0, 0, 2.02989)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.1622, 0)
+shape = SubResource("BoxShape3D_uaomt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.267, 61.4079, 0)
+shape = SubResource("BoxShape3D_jfrjl")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.245, 61.4079, 0)
+shape = SubResource("BoxShape3D_jfrjl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.130769, -0.991413, 0, 0.991413, 0.130769, 0, 64.1562, -27.1833)
+shape = SubResource("BoxShape3D_icrjd")

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Lowpoly bird (Robin)
+* source:	https://sketchfab.com/3d-models/lowpoly-bird-robin-e8083fd21a73438ca67b90307e6931e5
+* author:	Poliko (https://sketchfab.com/Poliko)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Lowpoly bird (Robin)" (https://sketchfab.com/3d-models/lowpoly-bird-robin-e8083fd21a73438ca67b90307e6931e5) by Poliko (https://sketchfab.com/Poliko) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

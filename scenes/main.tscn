@@ -1,0 +1,439 @@
+[gd_scene load_steps=42 format=3 uid="uid://d46wrkgdeynk"]
+
+[ext_resource type="Script" path="res://scripts/initialize.gd" id="1_6pc8s"]
+[ext_resource type="PackedScene" uid="uid://c314frbnpu2nf" path="res://lowpoly_bird_robin/PolygonAdventure.glb" id="2_eujp1"]
+[ext_resource type="Texture2D" uid="uid://dsxdaxn515iuu" path="res://materials/stone floor/Stone_Floor_006_basecolor.jpg" id="2_su1o8"]
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_uvb37"]
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="3_03phi"]
+[ext_resource type="PackedScene" uid="uid://c2y5lyyffay12" path="res://lowpoly_bird_robin/playerbird.tscn" id="3_a15sd"]
+[ext_resource type="PackedScene" uid="uid://d355gy3hgdtwr" path="res://lowpoly_bird_robin/bird.tscn" id="3_ktigt"]
+[ext_resource type="Texture2D" uid="uid://bcwjtlkl43fnv" path="res://materials/stone floor/Stone_Floor_006_ambientOcclusion.jpg" id="3_nf6uy"]
+[ext_resource type="Script" path="res://scenes/locomotion.gd" id="3_wkt3c"]
+[ext_resource type="Texture2D" uid="uid://bywm863d0gygt" path="res://materials/stone floor/Stone_Floor_006_height.png" id="4_c7u37"]
+[ext_resource type="Texture2D" uid="uid://c6ndmjqyojn7s" path="res://materials/stone floor/Stone_Floor_006_normal.jpg" id="5_ebsse"]
+[ext_resource type="Texture2D" uid="uid://uy0sk1nhgljt" path="res://materials/stone floor/Stone_Floor_006_roughness.jpg" id="6_hqn72"]
+[ext_resource type="Shader" path="res://scenes/vignette.gdshader" id="9_e6ttj"]
+[ext_resource type="Script" path="res://scripts/beak.gd" id="10_3jwpt"]
+[ext_resource type="Script" path="res://scripts/SeedCount.gd" id="12_s55b3"]
+[ext_resource type="PackedScene" uid="uid://hh8fniu5yus1" path="res://models/maple_tree/tree.tscn" id="15_mc5h4"]
+[ext_resource type="PackedScene" uid="uid://4mlb1jnvm8mt" path="res://models/park_bench/bench.tscn" id="16_073nf"]
+[ext_resource type="PackedScene" uid="uid://b7hqmkrlghnrd" path="res://models/picnic_bench/picnic_bench.tscn" id="17_d00da"]
+[ext_resource type="PackedScene" uid="uid://bhmjgu6ft6bdg" path="res://models/environment/courtyard.tscn" id="19_47ydm"]
+[ext_resource type="PackedScene" uid="uid://ulv8h7ob8pkg" path="res://models/pond/pond.tscn" id="19_ahc3o"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_osj4q"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_noqmy"]
+sky_material = SubResource("ProceduralSkyMaterial_osj4q")
+
+[sub_resource type="Environment" id="Environment_pi0m0"]
+background_mode = 2
+sky = SubResource("Sky_noqmy")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a8whk"]
+size = Vector2(1000, 1500)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehtpg"]
+albedo_texture = ExtResource("2_su1o8")
+roughness_texture = ExtResource("6_hqn72")
+normal_enabled = true
+normal_texture = ExtResource("5_ebsse")
+ao_enabled = true
+ao_texture = ExtResource("3_nf6uy")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_c7u37")
+uv1_scale = Vector3(1, 15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_trsr2"]
+size = Vector3(100, 1, 150)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bhd42"]
+height = 0.1
+radius = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcqm8"]
+shader = ExtResource("9_e6ttj")
+shader_parameter/player_position = Vector2(0.5, 0.5)
+shader_parameter/color = Color(0, 0, 0, 0.898039)
+shader_parameter/MULTIPLIER = 0.9
+shader_parameter/SCALE = 0.5
+shader_parameter/SOFTNESS = 0.65
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n17ye"]
+size = Vector3(0.1, 0.1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_hv1vc"]
+size = Vector3(0.1, 0.2, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ovou"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dmgc4"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc8il"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2iy2"]
+albedo_color = Color(0.282353, 0.282353, 0.282353, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wdvc"]
+albedo_color = Color(0.282353, 0.282353, 0.282353, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5y57"]
+radius = 0.03
+height = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fim8m"]
+size = Vector3(7.93449, 1, 5.75881)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3182g"]
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yk85h"]
+albedo_color = Color(0.823529, 0.705882, 0.54902, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_g13vx"]
+material = SubResource("StandardMaterial3D_yk85h")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mjklu"]
+radius = 0.1
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_6pc8s")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pi0m0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+mesh = SubResource("PlaneMesh_a8whk")
+surface_material_override/0 = SubResource("StandardMaterial3D_ehtpg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_trsr2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+visible = false
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
+polygon = PackedVector2Array(0, 0)
+
+[node name="PolygonAdventure" parent="StaticBody3D/CollisionPolygon3D" instance=ExtResource("2_eujp1")]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("CylinderShape3D_bhd42")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="CharacterBody3D"]
+script = ExtResource("3_wkt3c")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="CharacterBody3D/XROrigin3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CharacterBody3D/XROrigin3D/XRCamera3D"]
+
+[node name="ColorRect2" type="ColorRect" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer"]
+material = SubResource("ShaderMaterial_rcqm8")
+anchors_preset = -1
+offset_top = 100.0
+offset_right = 1825.0
+offset_bottom = 1700.0
+color = Color(0.333333, 0.0431373, 0.329412, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer"]
+visible = false
+offset_left = 900.0
+offset_top = 900.0
+offset_right = 920.0
+offset_bottom = 920.0
+color = Color(0, 1, 1, 1)
+
+[node name="Diamond Vignette" type="Node2D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer"]
+visible = false
+
+[node name="Node2D" type="Node2D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette"]
+position = Vector2(1825, 1700)
+rotation = 0.785398
+
+[node name="ColorRect5" type="ColorRect" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette/Node2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -700.0
+offset_right = 700.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(800, 800)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Node2D2" type="Node2D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette"]
+position = Vector2(0, 1700)
+rotation = 0.785398
+
+[node name="ColorRect5" type="ColorRect" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette/Node2D2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -700.0
+offset_right = 700.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(800, 800)
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D3" type="Node2D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette"]
+position = Vector2(1825, 100)
+rotation = 0.785398
+
+[node name="ColorRect5" type="ColorRect" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette/Node2D3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -700.0
+offset_right = 700.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(800, 800)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Node2D4" type="Node2D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette"]
+position = Vector2(0, 100)
+rotation = 0.785398
+
+[node name="ColorRect5" type="ColorRect" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette/Node2D4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -700.0
+offset_right = 700.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(800, 800)
+color = Color(0, 0, 0, 1)
+
+[node name="SeedCount1" type="Label3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/CanvasLayer"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1.93994)
+visible = false
+pixel_size = 0.009
+text = "Number of Seeds Collected: 0"
+font_size = 12
+
+[node name="playerbird" parent="CharacterBody3D/XROrigin3D/XRCamera3D" instance=ExtResource("3_a15sd")]
+transform = Transform3D(-18, 0, -5.43585e-06, 0, 18, 0, 2.71792e-06, 0, -36, 0.008, -1.58, 2.39)
+
+[node name="beak" type="Node3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.141027, -0.403569)
+script = ExtResource("10_3jwpt")
+
+[node name="Area3D" type="Area3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/beak"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/beak/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0237544, 0.0774715)
+shape = SubResource("BoxShape3D_n17ye")
+
+[node name="Pivot" type="Node3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -1)
+
+[node name="ArrowPivot" type="Node3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/Pivot"]
+
+[node name="ArrowMesh" type="MeshInstance3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/Pivot/ArrowPivot"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_hv1vc")
+surface_material_override/0 = SubResource("StandardMaterial3D_2ovou")
+
+[node name="PointDirection" type="MeshInstance3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.305)
+visible = false
+mesh = SubResource("SphereMesh_dmgc4")
+surface_material_override/0 = SubResource("StandardMaterial3D_tc8il")
+
+[node name="Collection" type="CanvasLayer" parent="CharacterBody3D/XROrigin3D/XRCamera3D"]
+
+[node name="Control" type="Control" parent="CharacterBody3D/XROrigin3D/XRCamera3D/Collection"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 301.0
+offset_top = 284.0
+offset_right = 301.0
+offset_bottom = 284.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CharacterBody3D/XROrigin3D/XRCamera3D/Collection/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.5
+offset_top = -45.0
+offset_right = 145.5
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterBody3D/XROrigin3D/XRCamera3D/Collection/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterBody3D/XROrigin3D/XRCamera3D/Collection/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SeedCount" type="Label" parent="CharacterBody3D/XROrigin3D/XRCamera3D/Collection/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Number of Seeds Collected: 0"
+script = ExtResource("12_s55b3")
+
+[node name="LeftController" type="XRController3D" parent="CharacterBody3D/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.35, -0.8)
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="CharacterBody3D/XROrigin3D/LeftController" instance=ExtResource("2_uvb37")]
+hand_material_override = SubResource("StandardMaterial3D_j2iy2")
+
+[node name="RightController" type="XRController3D" parent="CharacterBody3D/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.35, -0.8)
+tracker = &"right_hand"
+
+[node name="RightHand" parent="CharacterBody3D/XROrigin3D/RightController" instance=ExtResource("3_03phi")]
+hand_material_override = SubResource("StandardMaterial3D_7wdvc")
+
+[node name="Other Bird" type="StaticBody3D" parent="."]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, 0, 0.069, -3.363)
+
+[node name="bird" parent="Other Bird" instance=ExtResource("3_ktigt")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Other Bird"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0.0552927, 0.0253984)
+shape = SubResource("CapsuleShape3D_q5y57")
+
+[node name="Seeds" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Seeds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.158, 105.365, -132.016)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Seeds/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.703674, -0.847984, -0.14653)
+shape = SubResource("BoxShape3D_fim8m")
+
+[node name="seed1" type="RigidBody3D" parent="Seeds" groups=["Seeds"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.768477, 0.2878, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Seeds/seed1"]
+shape = SubResource("SphereShape3D_3182g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Seeds/seed1"]
+mesh = SubResource("SphereMesh_g13vx")
+
+[node name="seed2" type="RigidBody3D" parent="Seeds" groups=["Seeds"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42742, 0.2878, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Seeds/seed2"]
+shape = SubResource("SphereShape3D_3182g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Seeds/seed2"]
+mesh = SubResource("SphereMesh_g13vx")
+
+[node name="seed3" type="RigidBody3D" parent="Seeds" groups=["Seeds"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65792, 0.2878, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Seeds/seed3"]
+shape = SubResource("SphereShape3D_3182g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Seeds/seed3"]
+mesh = SubResource("SphereMesh_g13vx")
+
+[node name="seed4" type="RigidBody3D" parent="Seeds" groups=["Seeds"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35621, 0.2878, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Seeds/seed4"]
+shape = SubResource("SphereShape3D_3182g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Seeds/seed4"]
+mesh = SubResource("SphereMesh_g13vx")
+
+[node name="seed5" type="RigidBody3D" parent="Seeds" groups=["Seeds"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.89762, 0.2878, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Seeds/seed5"]
+shape = SubResource("SphereShape3D_3182g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Seeds/seed5"]
+mesh = SubResource("SphereMesh_g13vx")
+
+[node name="environment" type="Node3D" parent="."]
+
+[node name="tree" parent="environment" instance=ExtResource("15_mc5h4")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 58.2966, 0.128687, 37.65)
+
+[node name="bench" parent="environment" instance=ExtResource("16_073nf")]
+transform = Transform3D(0.0677197, 0, -0.0735802, 0, 0.1, 0, 0.0735802, 0, 0.0677197, 46.3392, -3.8147e-06, 20.8734)
+
+[node name="picnic_bench" parent="environment" instance=ExtResource("17_d00da")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.873995, 0, -38.0323)
+
+[node name="pond" parent="environment" instance=ExtResource("19_ahc3o")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 23, 0, 42)
+
+[node name="courtyard" parent="environment" instance=ExtResource("19_47ydm")]
+
+[node name="OverlapCheckArea" type="Area3D" parent="environment"]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/OverlapCheckArea"]
+shape = SubResource("SphereShape3D_mjklu")
+
+[connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/LeftController" to="CharacterBody3D/XROrigin3D" method="_on_button_pressed"]
+[connection signal="input_vector2_changed" from="CharacterBody3D/XROrigin3D/LeftController" to="CharacterBody3D/XROrigin3D" method="process_input"]
+[connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/RightController" to="CharacterBody3D/XROrigin3D" method="_on_button_pressed"]
+[connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/RightController" to="CharacterBody3D/XROrigin3D/XRCamera3D/beak" method="_on_button_pressed"]
+[connection signal="button_released" from="CharacterBody3D/XROrigin3D/RightController" to="CharacterBody3D/XROrigin3D/XRCamera3D/beak" method="_on_button_released"]
+[connection signal="input_vector2_changed" from="CharacterBody3D/XROrigin3D/RightController" to="CharacterBody3D/XROrigin3D" method="process_input"]
