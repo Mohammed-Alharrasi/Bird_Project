@@ -113,13 +113,14 @@ func _process(delta):
 	
 	if print_timer > -1:
 		print_timer += delta
-		if (print_timer > 2):
+		if (print_timer > 1):
 	#		print(snapped(self.position.y, 0.01), " ", snapped(velocity.y, 0.01))
 	#		print_timer = 0
 			if uninitialized_controllers:
 				previous_left_height = $LeftController.position.y
 				previous_right_height = $RightController.position.y
 				uninitialized_controllers = false
+				self.get_parent().position = Vector3(41.835, 10.679, -41.976)
 				print_timer = -1
 	
 	# keep arrow parallel with the XROrigin

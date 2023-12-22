@@ -14,8 +14,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _physics_process(delta):
 
-	
-	
 	nav.target_position = bird.global_transform.origin
 	var bird_position_flat = bird.global_transform.origin
 #	bird_position_flat.y = global_transform.origin.y # Keep the cat at the same y-level

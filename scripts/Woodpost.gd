@@ -115,7 +115,7 @@ func build_nest():
 		grabbable_twig.hide()
 
 	nest.visible = true
-	%CharacterBody3D.postion += Vector3(0, 1, 0)
+	%CharacterBody3D.position += Vector3(0, 1, 0)
 	%nestbird/CollisionShape3D.disabled = false  # enable the nest collision
 	nest.collision_layer |= 1  # Add to collision layer 1
 	nestBuilt = true

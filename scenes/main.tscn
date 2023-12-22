@@ -16,10 +16,10 @@
 [ext_resource type="Script" path="res://scripts/SeedCountt.gd" id="13_ac1b2"]
 [ext_resource type="Script" path="res://scripts/talon.gd" id="14_l3exo"]
 [ext_resource type="Script" path="res://scenes/Other Bird.gd" id="15_crskb"]
-[ext_resource type="PackedScene" uid="uid://hh8fniu5yus1" path="res://models/maple_tree/tree.tscn" id="15_mc5h4"]
 [ext_resource type="PackedScene" uid="uid://4mlb1jnvm8mt" path="res://models/park_bench/bench.tscn" id="16_073nf"]
 [ext_resource type="PackedScene" uid="uid://dadojs8c4qxvi" path="res://scenes/speech_bubble.tscn" id="16_pxklc"]
 [ext_resource type="PackedScene" uid="uid://b7hqmkrlghnrd" path="res://models/picnic_bench/picnic_bench.tscn" id="17_d00da"]
+[ext_resource type="PackedScene" uid="uid://b4ttt6vaakj77" path="res://models/twig/twig.tscn" id="17_leiv5"]
 [ext_resource type="Script" path="res://scenes/Other Bird2.gd" id="18_fjr52"]
 [ext_resource type="PackedScene" uid="uid://bhmjgu6ft6bdg" path="res://models/environment/courtyard.tscn" id="19_47ydm"]
 [ext_resource type="PackedScene" uid="uid://ulv8h7ob8pkg" path="res://models/pond/pond.tscn" id="19_ahc3o"]
@@ -28,10 +28,11 @@
 [ext_resource type="Script" path="res://scripts/cat.gd" id="23_i6nct"]
 [ext_resource type="Script" path="res://scripts/Woodpost.gd" id="24_8m31n"]
 [ext_resource type="PackedScene" uid="uid://oht8tbpo73em" path="res://models/worm/scene.gltf" id="24_bgolt"]
-[ext_resource type="PackedScene" uid="uid://diadvnr0nqebe" path="res://models/twig/scene.gltf" id="25_1tywe"]
 [ext_resource type="PackedScene" uid="uid://lbyy13khyfix" path="res://models/birds_nest/scene.gltf" id="26_0eu24"]
 [ext_resource type="PackedScene" uid="uid://qtdkqj4jw5gg" path="res://models/egg/scene.gltf" id="27_twlre"]
 [ext_resource type="PackedScene" uid="uid://ccgxoylolnm8r" path="res://models/house/scene.gltf" id="29_3oj3k"]
+[ext_resource type="PackedScene" uid="uid://ej66tyfc24ik" path="res://models/trees_low_poly/tree1.tscn" id="32_ws3e7"]
+[ext_resource type="PackedScene" uid="uid://c3rgpauejqs62" path="res://models/trees_low_poly/tree2.tscn" id="33_8e8li"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_osj4q"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -76,7 +77,7 @@ shader_parameter/SCALE = 0.5
 shader_parameter/SOFTNESS = 0.65
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fh3lx"]
-size = Vector3(0.07, 0.0121051, 0.0485057)
+size = Vector3(0.07, 0.0992235, 0.0485057)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n17ye"]
 size = Vector3(0.1, 0.1, 1)
@@ -109,9 +110,6 @@ radius = 0.1
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qfcio"]
 radius = 0.11
 height = 1.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xxatk"]
-size = Vector3(0.1, 0.1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fim8m"]
 size = Vector3(7.93449, 1, 5.75881)
@@ -164,13 +162,13 @@ size = Vector3(3.67165, 1.34183, 1.57975)
 radius = 0.03
 height = 0.1
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4qeeu"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_olo0e"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_2hn0p"]
 viewport_path = NodePath("environment/NavigationRegion3D/post/Other Bird/Interact prompt/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_b13ls"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_o5gfb"]
 viewport_path = NodePath("SubViewport")
 
 [node name="Main" type="Node3D"]
@@ -197,7 +195,7 @@ shape = SubResource("BoxShape3D_trsr2")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.968718, 0, -0.248166, 0, 1, 0, 0.248166, 0, 0.968718, 41.835, 10.5, -41.9761)
+transform = Transform3D(0.968718, 0, -0.248166, 0, 1, 0, 0.248166, 0, 0.968718, 41.835, 10.6792, -41.9761)
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -317,7 +315,7 @@ transform = Transform3D(-18, 0, -5.72205e-06, 0, 18, 0, 2.86102e-06, 0, -36, 0.0
 [node name="Area3D" type="Area3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/playerbird"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D/playerbird/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, -2.06057e-13, 0, 1, -1.20199e-08, 0.00628391, 0.039818)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38419e-07, 0.0388445, 0.039818)
 shape = SubResource("BoxShape3D_fh3lx")
 
 [node name="beak" type="Node3D" parent="CharacterBody3D/XROrigin3D/XRCamera3D"]
@@ -431,75 +429,26 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 [node name="Twigs" type="Node3D" parent="environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.63577, 1.09149, 3.64115)
 
-[node name="twig1" type="RigidBody3D" parent="environment/Twigs" groups=["Twigs"]]
+[node name="twig8" parent="environment/Twigs" groups=["Twigs"] instance=ExtResource("17_leiv5")]
 transform = Transform3D(-0.177858, 0, -0.984056, 0, 1, 0, 0.984056, 0, -0.177858, -36.3271, -0.00203514, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/Twigs/twig1"]
-transform = Transform3D(0.997143, -0.0586104, -0.047655, 0.037016, 0.929049, -0.368099, 0.0658483, 0.365283, 0.928565, -0.0706067, -0.0293168, -0.0258942)
-shape = SubResource("BoxShape3D_xxatk")
-
-[node name="twig" parent="environment/Twigs/twig1" instance=ExtResource("25_1tywe")]
-transform = Transform3D(0.299953, 0, -0.00528284, 0, 0.3, 0, 0.00528284, 0, 0.299953, 0, 0, 0)
-
-[node name="twig2" type="RigidBody3D" parent="environment/Twigs" groups=["Twigs"]]
+[node name="twig9" parent="environment/Twigs" groups=["Twigs"] instance=ExtResource("17_leiv5")]
 transform = Transform3D(-0.177858, 0, -0.984056, 0, 1, 0, 0.984056, 0, -0.177858, -23.3235, -0.00203514, 8.67994)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/Twigs/twig2"]
-transform = Transform3D(0.997143, -0.0586104, -0.047655, 0.037016, 0.929049, -0.368099, 0.0658483, 0.365283, 0.928565, -0.0706067, -0.0293168, -0.0258942)
-shape = SubResource("BoxShape3D_xxatk")
-
-[node name="twig" parent="environment/Twigs/twig2" instance=ExtResource("25_1tywe")]
-transform = Transform3D(0.299953, 0, -0.00528284, 0, 0.3, 0, 0.00528284, 0, 0.299953, 0, 0, 0)
-
-[node name="twig3" type="RigidBody3D" parent="environment/Twigs" groups=["Twigs"]]
+[node name="twig10" parent="environment/Twigs" groups=["Twigs"] instance=ExtResource("17_leiv5")]
 transform = Transform3D(-0.177858, 0, -0.984056, 0, 1, 0, 0.984056, 0, -0.177858, -15.1441, -0.00203514, -8.41379)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/Twigs/twig3"]
-transform = Transform3D(0.997143, -0.0586104, -0.047655, 0.037016, 0.929049, -0.368099, 0.0658483, 0.365283, 0.928565, -0.0706067, -0.0293168, -0.0258942)
-shape = SubResource("BoxShape3D_xxatk")
-
-[node name="twig" parent="environment/Twigs/twig3" instance=ExtResource("25_1tywe")]
-transform = Transform3D(0.299953, 0, -0.00528284, 0, 0.3, 0, 0.00528284, 0, 0.299953, 0, 0, 0)
-
-[node name="twig4" type="RigidBody3D" parent="environment/Twigs" groups=["Twigs"]]
+[node name="twig11" parent="environment/Twigs" groups=["Twigs"] instance=ExtResource("17_leiv5")]
 transform = Transform3D(-0.177858, 0, -0.984056, 0, 1, 0, 0.984056, 0, -0.177858, -25.0422, -0.00203514, -24.302)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/Twigs/twig4"]
-transform = Transform3D(0.997143, -0.0586104, -0.047655, 0.037016, 0.929049, -0.368099, 0.0658483, 0.365283, 0.928565, -0.0706067, -0.0293168, -0.0258942)
-shape = SubResource("BoxShape3D_xxatk")
-
-[node name="twig" parent="environment/Twigs/twig4" instance=ExtResource("25_1tywe")]
-transform = Transform3D(0.299953, 0, -0.00528284, 0, 0.3, 0, 0.00528284, 0, 0.299953, 0, 0, 0)
-
-[node name="twig5" type="RigidBody3D" parent="environment/Twigs" groups=["Twigs"]]
+[node name="twig12" parent="environment/Twigs" groups=["Twigs"] instance=ExtResource("17_leiv5")]
 transform = Transform3D(-0.177858, 0, -0.984056, 0, 1, 0, 0.984056, 0, -0.177858, -7.69622, -0.00203514, 16.6133)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/Twigs/twig5"]
-transform = Transform3D(0.997143, -0.0586104, -0.047655, 0.037016, 0.929049, -0.368099, 0.0658483, 0.365283, 0.928565, -0.0706067, -0.0293168, -0.0258942)
-shape = SubResource("BoxShape3D_xxatk")
-
-[node name="twig" parent="environment/Twigs/twig5" instance=ExtResource("25_1tywe")]
-transform = Transform3D(0.299953, 0, -0.00528284, 0, 0.3, 0, 0.00528284, 0, 0.299953, 0, 0, 0)
-
-[node name="twig6" type="RigidBody3D" parent="environment/Twigs" groups=["Twigs"]]
+[node name="twig13" parent="environment/Twigs" groups=["Twigs"] instance=ExtResource("17_leiv5")]
 transform = Transform3D(-0.177858, 0, -0.984056, 0, 1, 0, 0.984056, 0, -0.177858, 2.72243, -0.00203514, 11.5568)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/Twigs/twig6"]
-transform = Transform3D(0.997143, -0.0586104, -0.047655, 0.037016, 0.929049, -0.368099, 0.0658483, 0.365283, 0.928565, -0.0706067, -0.0293168, -0.0258942)
-shape = SubResource("BoxShape3D_xxatk")
-
-[node name="twig" parent="environment/Twigs/twig6" instance=ExtResource("25_1tywe")]
-transform = Transform3D(0.299953, 0, -0.00528284, 0, 0.3, 0, 0.00528284, 0, 0.299953, 0, 0, 0)
-
-[node name="twig7" type="RigidBody3D" parent="environment/Twigs" groups=["Twigs"]]
+[node name="twig14" parent="environment/Twigs" groups=["Twigs"] instance=ExtResource("17_leiv5")]
 transform = Transform3D(-0.177858, 0, -0.984056, 0, 1, 0, 0.984056, 0, -0.177858, 0, -0.00203514, -20.3291)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/Twigs/twig7"]
-transform = Transform3D(0.997143, -0.0586104, -0.047655, 0.037016, 0.929049, -0.368099, 0.0658483, 0.365283, 0.928565, -0.0706067, -0.0293168, -0.0258942)
-shape = SubResource("BoxShape3D_xxatk")
-
-[node name="twig" parent="environment/Twigs/twig7" instance=ExtResource("25_1tywe")]
-transform = Transform3D(0.299953, 0, -0.00528284, 0, 0.3, 0, 0.00528284, 0, 0.299953, 0, 0, 0)
 
 [node name="Seeds" type="Node3D" parent="environment"]
 
@@ -680,17 +629,40 @@ font_size = 7
 transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0.0494823, 0)
 shape = SubResource("BoxShape3D_3pgw6")
 
-[node name="tree" parent="environment/NavigationRegion3D" instance=ExtResource("15_mc5h4")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 58.2966, 0.128687, 37.65)
-
 [node name="bench" parent="environment/NavigationRegion3D" instance=ExtResource("16_073nf")]
 transform = Transform3D(0.0677197, 0, -0.0735802, 0, 0.1, 0, 0.0735802, 0, 0.0677197, 46.3392, -3.8147e-06, 20.8734)
+
+[node name="bench2" parent="environment/NavigationRegion3D" instance=ExtResource("16_073nf")]
+transform = Transform3D(-0.0830635, 0, -0.0556817, 0, 0.1, 0, 0.0556817, 0, -0.0830635, 180.974, -3.8147e-06, -47.4123)
+
+[node name="bench3" parent="environment/NavigationRegion3D" instance=ExtResource("16_073nf")]
+transform = Transform3D(-0.00495474, 0, -0.0998772, 0, 0.1, 0, 0.0998772, 0, -0.00495474, -258.469, -3.8147e-06, -79.3718)
 
 [node name="picnic_bench" parent="environment/NavigationRegion3D" instance=ExtResource("17_d00da")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.873995, 0, -38.0323)
 
+[node name="picnic_bench2" parent="environment/NavigationRegion3D" instance=ExtResource("17_d00da")]
+transform = Transform3D(0.938884, 0, 0.344233, 0, 1, 0, -0.344233, 0, 0.938884, -125.433, 0, 87.5597)
+
+[node name="picnic_bench3" parent="environment/NavigationRegion3D" instance=ExtResource("17_d00da")]
+transform = Transform3D(0.970393, 0, -0.241532, 0, 1, 0, 0.241532, 0, 0.970393, -155.161, 0, -63.8368)
+
+[node name="picnic_bench4" parent="environment/NavigationRegion3D" instance=ExtResource("17_d00da")]
+transform = Transform3D(-0.315947, 0, -0.948777, 0, 1, 0, 0.948777, 0, -0.315947, -228.103, 0, -0.916336)
+
+[node name="picnic_bench5" parent="environment/NavigationRegion3D" instance=ExtResource("17_d00da")]
+transform = Transform3D(-0.315947, 0, -0.948777, 0, 1, 0, 0.948777, 0, -0.315947, 218.399, 0, 52.6492)
+
 [node name="pond" parent="environment/NavigationRegion3D" instance=ExtResource("19_ahc3o")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 23, 0, 42)
+script = SubResource("GDScript_86h4d")
+
+[node name="pond2" parent="environment/NavigationRegion3D" instance=ExtResource("19_ahc3o")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -243.588, 0, 51.3485)
+script = SubResource("GDScript_86h4d")
+
+[node name="pond3" parent="environment/NavigationRegion3D" instance=ExtResource("19_ahc3o")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 231.025, 0, -20.8558)
 script = SubResource("GDScript_86h4d")
 
 [node name="courtyard" parent="environment/NavigationRegion3D" instance=ExtResource("19_47ydm")]
@@ -748,7 +720,7 @@ shape = SubResource("CapsuleShape3D_q5y57")
 [node name="speech_bubble" parent="environment/NavigationRegion3D/post/Other Bird" instance=ExtResource("16_pxklc")]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.156123, 0.0266257)
 visible = false
-texture = SubResource("ViewportTexture_4qeeu")
+texture = SubResource("ViewportTexture_olo0e")
 
 [node name="Interact prompt" type="Sprite3D" parent="environment/NavigationRegion3D/post/Other Bird"]
 transform = Transform3D(0.05, 0, -9.31323e-10, 0, 0.05, 0, 9.31323e-10, 0, 0.05, 0, 0.111921, 0)
@@ -790,7 +762,7 @@ shape = SubResource("CapsuleShape3D_q5y57")
 [node name="speech_bubble" parent="environment/NavigationRegion3D/post/Other Bird2" instance=ExtResource("16_pxklc")]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.156123, 0.0266257)
 visible = false
-texture = SubResource("ViewportTexture_b13ls")
+texture = SubResource("ViewportTexture_o5gfb")
 
 [node name="Interact prompt" type="Sprite3D" parent="environment/NavigationRegion3D/post/Other Bird2"]
 transform = Transform3D(0.05, 0, -9.31323e-10, 0, 0.05, 0, 9.31323e-10, 0, 0.05, 0, 0.111921, 0)
@@ -817,6 +789,71 @@ grow_vertical = 2
 text = "RT to Interact"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="trees" type="Node3D" parent="environment/NavigationRegion3D"]
+
+[node name="tree1" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -23, 0, -56)
+
+[node name="tree3" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 170.294, 0, -7.6008)
+
+[node name="tree16" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 239.952, 0, -57.9843)
+
+[node name="tree17" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 226.233, 0, 15.9578)
+
+[node name="tree18" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 92.916, 0, 83.4434)
+
+[node name="tree19" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -63.1633, 3.05176e-05, -22.494)
+
+[node name="tree4" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -52.8982, 0, 86.3058)
+
+[node name="tree5" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -246.904, 0, -51.4791)
+
+[node name="tree6" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -154.942, 0, -93.3759)
+
+[node name="tree7" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -208.519, 0, 48.827)
+
+[node name="tree8" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -135.724, 0, 6.65201)
+
+[node name="tree9" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -161.871, 0, 95.44)
+
+[node name="tree20" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 157.516, 3.05176e-05, 69.9983)
+
+[node name="tree21" parent="environment/NavigationRegion3D/trees" instance=ExtResource("32_ws3e7")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 239.983, 6.10352e-05, 92.8375)
+
+[node name="tree2" parent="environment/NavigationRegion3D/trees" instance=ExtResource("33_8e8li")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 55, 0, 47)
+
+[node name="tree10" parent="environment/NavigationRegion3D/trees" instance=ExtResource("33_8e8li")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -183.399, 3.05176e-05, -11.9886)
+
+[node name="tree11" parent="environment/NavigationRegion3D/trees" instance=ExtResource("33_8e8li")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -258.815, 3.05176e-05, -19.592)
+
+[node name="tree12" parent="environment/NavigationRegion3D/trees" instance=ExtResource("33_8e8li")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -190.767, 3.05176e-05, -66.0469)
+
+[node name="tree13" parent="environment/NavigationRegion3D/trees" instance=ExtResource("33_8e8li")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -101.908, 3.05176e-05, -67.1477)
+
+[node name="tree14" parent="environment/NavigationRegion3D/trees" instance=ExtResource("33_8e8li")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 66.4037, 6.10352e-05, -86.6066)
+
+[node name="tree15" parent="environment/NavigationRegion3D/trees" instance=ExtResource("33_8e8li")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 94.0238, 6.10352e-05, 3.69254)
 
 [connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/LeftController" to="CharacterBody3D/XROrigin3D" method="_on_button_pressed"]
 [connection signal="button_pressed" from="CharacterBody3D/XROrigin3D/LeftController" to="CharacterBody3D/XROrigin3D/XRCamera3D/beak" method="_on_button_pressed"]
