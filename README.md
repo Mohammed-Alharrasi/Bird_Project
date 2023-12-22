@@ -76,7 +76,9 @@ Push left or right to rotate about the camera’s position.
 ## License
 
 Project Bird Simulator VR is open-source and is licensed under [Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/). Please see the individual assets for their respective licenses.
+## Contributors
 
-## Acknowledgements
+This project was made possible by the contributions of:
 
-Special thanks to all the creators of the assets and tools used in this project. Your contributions have been invaluable in bringing this immersive VR experience to life.
+- **Mohammed Al-Harrasi** - Alhar078@umn.edu
+- **Dylan Blundell** - Blund013@umn.edu
