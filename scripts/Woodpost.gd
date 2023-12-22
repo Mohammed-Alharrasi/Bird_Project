@@ -42,7 +42,7 @@ func _process(delta):
 	if nest.get_node("CollisionShape3D") == null or nest.get_node("CollisionShape3D").shape == null:
 		print("Nest has no collision shape or the shape is not set.")
 
-	if egglayed == false: 
+	if egglayed == false and nestBuilt == true:  
 #		print("seed_count: " , seed_count.size())
 		var player_body = %playerbird as Node3D
 		if seed_count.size() >= 2:

@@ -1,0 +1,243 @@
+[gd_scene load_steps=20 format=3 uid="uid://bo7lnppbx4klq"]
+
+[ext_resource type="Script" path="res://scenes/locomotion.gd" id="1_uityf"]
+[ext_resource type="Shader" path="res://scenes/vignette.gdshader" id="2_ccyk0"]
+[ext_resource type="PackedScene" uid="uid://c2y5lyyffay12" path="res://lowpoly_bird_robin/playerbird.tscn" id="3_x1c8y"]
+[ext_resource type="Script" path="res://scripts/beak.gd" id="4_tmlk6"]
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="5_mk02l"]
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="6_l3u35"]
+[ext_resource type="Script" path="res://scripts/SeedCountt.gd" id="7_2h7nk"]
+[ext_resource type="Script" path="res://scripts/talon.gd" id="8_hsm0i"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bhd42"]
+height = 0.1
+radius = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcqm8"]
+shader = ExtResource("2_ccyk0")
+shader_parameter/player_position = Vector2(0.5, 0.5)
+shader_parameter/color = Color(0, 0, 0, 0.898039)
+shader_parameter/MULTIPLIER = 0.9
+shader_parameter/SCALE = 0.5
+shader_parameter/SOFTNESS = 0.65
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fh3lx"]
+size = Vector3(0.07, 0.1, 0.09)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n17ye"]
+size = Vector3(0.1, 0.1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_hv1vc"]
+size = Vector3(0.1, 0.2, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ovou"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dmgc4"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc8il"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2iy2"]
+albedo_color = Color(0.282353, 0.282353, 0.282353, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wdvc"]
+albedo_color = Color(0.282353, 0.282353, 0.282353, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_emqep"]
+size = Vector3(1, 0.1, 3)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("CylinderShape3D_bhd42")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_uityf")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="XROrigin3D/XRCamera3D"]
+visible = false
+
+[node name="ColorRect2" type="ColorRect" parent="XROrigin3D/XRCamera3D/CanvasLayer"]
+material = SubResource("ShaderMaterial_rcqm8")
+offset_top = 100.0
+offset_right = 1825.0
+offset_bottom = 1700.0
+color = Color(0.333333, 0.0431373, 0.329412, 1)
+
+[node name="ColorRect" type="ColorRect" parent="XROrigin3D/XRCamera3D/CanvasLayer"]
+visible = false
+offset_left = 900.0
+offset_top = 900.0
+offset_right = 920.0
+offset_bottom = 920.0
+color = Color(0, 1, 1, 1)
+
+[node name="Diamond Vignette" type="Node2D" parent="XROrigin3D/XRCamera3D/CanvasLayer"]
+visible = false
+
+[node name="Node2D" type="Node2D" parent="XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette"]
+position = Vector2(1825, 1700)
+rotation = 0.785398
+
+[node name="ColorRect5" type="ColorRect" parent="XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette/Node2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -700.0
+offset_right = 700.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(800, 800)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Node2D2" type="Node2D" parent="XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette"]
+position = Vector2(0, 1700)
+rotation = 0.785398
+
+[node name="ColorRect5" type="ColorRect" parent="XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette/Node2D2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -700.0
+offset_right = 700.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(800, 800)
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D3" type="Node2D" parent="XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette"]
+position = Vector2(1825, 100)
+rotation = 0.785398
+
+[node name="ColorRect5" type="ColorRect" parent="XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette/Node2D3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -700.0
+offset_right = 700.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(800, 800)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Node2D4" type="Node2D" parent="XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette"]
+position = Vector2(0, 100)
+rotation = 0.785398
+
+[node name="ColorRect5" type="ColorRect" parent="XROrigin3D/XRCamera3D/CanvasLayer/Diamond Vignette/Node2D4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -700.0
+offset_right = 700.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(800, 800)
+color = Color(0, 0, 0, 1)
+
+[node name="playerbird" parent="XROrigin3D/XRCamera3D" instance=ExtResource("3_x1c8y")]
+unique_name_in_owner = true
+transform = Transform3D(-18, 0, -5.43585e-06, 0, 18, 0, 2.71792e-06, 0, -36, 0.008, -1.58, 2.39)
+
+[node name="Area3D" type="Area3D" parent="XROrigin3D/XRCamera3D/playerbird"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/XRCamera3D/playerbird/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.77636e-13, 0, 1, -3.40515e-09, 0.0495205, 0.0112232)
+shape = SubResource("BoxShape3D_fh3lx")
+
+[node name="beak" type="Node3D" parent="XROrigin3D/XRCamera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.141027, -0.403569)
+script = ExtResource("4_tmlk6")
+
+[node name="Area3D" type="Area3D" parent="XROrigin3D/XRCamera3D/beak"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/XRCamera3D/beak/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0237544, 0.0774715)
+shape = SubResource("BoxShape3D_n17ye")
+
+[node name="Pivot" type="Node3D" parent="XROrigin3D/XRCamera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -1)
+
+[node name="ArrowPivot" type="Node3D" parent="XROrigin3D/XRCamera3D/Pivot"]
+
+[node name="ArrowMesh" type="MeshInstance3D" parent="XROrigin3D/XRCamera3D/Pivot/ArrowPivot"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_hv1vc")
+surface_material_override/0 = SubResource("StandardMaterial3D_2ovou")
+
+[node name="PointDirection" type="MeshInstance3D" parent="XROrigin3D/XRCamera3D/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.305)
+visible = false
+mesh = SubResource("SphereMesh_dmgc4")
+surface_material_override/0 = SubResource("StandardMaterial3D_tc8il")
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.35, -0.8)
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("5_mk02l")]
+hand_material_override = SubResource("StandardMaterial3D_j2iy2")
+
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.35, -0.8)
+tracker = &"right_hand"
+
+[node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("6_l3u35")]
+hand_material_override = SubResource("StandardMaterial3D_7wdvc")
+
+[node name="SeedCount" type="Label3D" parent="XROrigin3D/RightController"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0137654, 0.0256566, -0.0241474)
+text = "Number of Seeds Collected: 0"
+font_size = 7
+script = ExtResource("7_2h7nk")
+
+[node name="talon" type="Node3D" parent="XROrigin3D"]
+script = ExtResource("8_hsm0i")
+
+[node name="Area3D" type="Area3D" parent="XROrigin3D/talon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.36)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/talon/Area3D"]
+shape = SubResource("BoxShape3D_emqep")
+
+[connection signal="button_pressed" from="XROrigin3D/LeftController" to="XROrigin3D" method="_on_button_pressed"]
+[connection signal="button_pressed" from="XROrigin3D/LeftController" to="XROrigin3D/XRCamera3D/beak" method="_on_button_pressed"]
+[connection signal="button_pressed" from="XROrigin3D/LeftController" to="XROrigin3D/talon" method="_on_button_pressed"]
+[connection signal="button_released" from="XROrigin3D/LeftController" to="XROrigin3D/XRCamera3D/beak" method="_on_button_released"]
+[connection signal="button_released" from="XROrigin3D/LeftController" to="XROrigin3D/talon" method="_on_button_released"]
+[connection signal="input_vector2_changed" from="XROrigin3D/LeftController" to="XROrigin3D" method="process_input"]
+[connection signal="button_pressed" from="XROrigin3D/RightController" to="XROrigin3D" method="_on_button_pressed"]
+[connection signal="button_pressed" from="XROrigin3D/RightController" to="XROrigin3D/XRCamera3D/beak" method="_on_button_pressed"]
+[connection signal="button_pressed" from="XROrigin3D/RightController" to="XROrigin3D/talon" method="_on_button_pressed"]
+[connection signal="button_released" from="XROrigin3D/RightController" to="XROrigin3D/XRCamera3D/beak" method="_on_button_released"]
+[connection signal="button_released" from="XROrigin3D/RightController" to="XROrigin3D/talon" method="_on_button_released"]
+[connection signal="input_vector2_changed" from="XROrigin3D/RightController" to="XROrigin3D" method="process_input"]
