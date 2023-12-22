@@ -1,0 +1,11 @@
+Model Information:
+* title:	Worm game-ready (FREE)
+* source:	https://sketchfab.com/3d-models/worm-game-ready-free-abb645445dd24c47a40052afb235336e
+* author:	Arjun S R (https://sketchfab.com/SRstudiosKerala)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Worm game-ready (FREE)" (https://sketchfab.com/3d-models/worm-game-ready-free-abb645445dd24c47a40052afb235336e) by Arjun S R (https://sketchfab.com/SRstudiosKerala) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

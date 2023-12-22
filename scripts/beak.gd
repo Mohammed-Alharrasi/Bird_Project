@@ -1,3 +1,4 @@
+# This code was written by Mohammed, but used an AI (Chatgpt) to debug it and improve it. 
 extends Node3D
 
 var grabbed_object: RigidBody3D = null
@@ -12,12 +13,9 @@ var previous_transform: Transform3D
 
 var min_position = Vector3(0, 0.5, 0)  
 var max_position = Vector3(570, 70, 253)
-#var last_collision = 0
-#var add_check = false
-#var min_position = Vector3(-3, 0.5, -3) 
-#var max_position = Vector3(3, 1, 3)
-#var seed_counter: Label3D
 
+var worm_grabbed = false
+var grabbed_objects = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,39 +25,30 @@ func _ready():
 #	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-#	print("before: " , %XRCamera3D.global_rotation.x)
-#	%XRCamera3D.global_rotation.x = %XRCamera3D.global_rotation.x *10
-#	print("after: " , %XRCamera3D.global_rotation.x)
-#	last_collision += _delta
-	for grabbable in grabbables:
-		# Cast the grabbable object to a RigidBody3D
-		var grabbable_body = grabbable as RigidBody3D
-		# Check to see if the grabber and grabbable collision shapes are intersecting
-		if collision_area.overlaps_body(grabbable_body):
-			grabbable_body.collision_layer &= ~1
-#			grabbable_body.hide()
-			
-			var new_position = await _generate_valid_random_position()
-			grabbable_body.global_transform.origin = new_position
-#			grabbable_body.show()
+	# Always handle worm movement
+	var relative_transform = self.global_transform * previous_transform.affine_inverse()
+	for obj in grabbed_objects:
+		obj.global_transform = relative_transform * obj.global_transform
+	previous_transform = self.global_transform
 
-			globals.active_grabbers.push_back(self)
-			print("Array length: " , globals.active_grabbers.size())
-			
+	# Check each grabbable to see if it's a seed
+	if not worm_grabbed:  # Only process seeds if no worm is grabbed
+		for grabbable in grabbables:
+			var grabbable_body = grabbable as RigidBody3D
+			if "Seeds" in grabbable.get_groups() and collision_area.overlaps_body(grabbable_body):
+				_handle_seed_interaction(grabbable_body)
+func _on_button_pressed(button_name: String) -> void:
+	if button_name != "grip_click":
+		return
 
-func _handle_collision(object):
-	pass
-#	var new_position = await _generate_valid_random_position()
-#	object.global_transform.origin = new_position
-#	object.collision_area.set_disabled(true)
-#	object.collision_layer &= ~1
-#	globals.active_grabbers.push_back(self)
-#	print("Array length: " , globals.active_grabbers.size())
-#	await get_tree().create_timer(0.5).timeout
-#	object.collision_layer |= 1
-#	object.collision_area.set_disabled(false)
+	# Check each grabbable to see if it's a worm
+	var grabble_worms = get_tree().get_nodes_in_group("Worms")
+	for grabble_worm in grabble_worms:
+		var grabbable_body = grabble_worm as RigidBody3D
+		if "Worms" in grabble_worm.get_groups() and collision_area.overlaps_body(grabbable_body):
+			_handle_worm_interaction(grabbable_body)
+
 	
 func _valid_position(new_position):
 	overlap_check_area.global_transform.origin = new_position
@@ -78,80 +67,45 @@ func _generate_valid_random_position():
 		)
 		valid_position_found = await _valid_position(new_position)
 	return new_position
-	
-
-func _on_button_pressed(button_name: String) -> void:
-#	print("button pressed: " + button_name)
-	
-	# Stop if we have not clicked the grip button or we already are grabbing an object
-	if button_name != "grip_click" || self.grabbed_object != null:
-		return
-	
-	var grabbables = get_tree().get_nodes_in_group("Seeds")
-	var collision_area = $Area3D as Area3D
-
-	# Iterate through all grabbable objects and check if the collision area overlaps with them
-	for grabbable in grabbables:
-
-		# Cast the grabbable object to a RigidBody3D
-		var grabbable_body = grabbable as RigidBody3D
-
-		# Check to see if the grabber and grabbable collision shapes are intersecting
-#		
-			
-		if collision_area.overlaps_body(grabbable_body):
-#			print("Beak Overlapping: " , grabbable_body )
-#			print("Seed Z position: " , grabbable_body.position.z )
-#			print("Beak Z position: " , collision_area.position.z )
-#			print("Seed Y position: " , grabbable_body.position.y )
-#			print("Beak Y position: " , collision_area.position.y )
-#			print("Seed X position: " , grabbable_body.position.x )
-#			print("Beak X position: " , collision_area.position.x )
-			
-			# If the object is already grabbed by another grabber, release it first
-			var globals = get_node("/root/Globals")
-#			print("Beak : test 1")
-#			for grabber in globals.active_grabbers:
-#				print("Beak : test 2")
-#				if grabber.grabbed_object == grabbable_body:
-#					print("Beak : test 3")
-#					grabber.grabbed_object = null
-#					globals.active_grabbers.remove_at(globals.active_grabbers.find(self))
-#					break
-
-			# Freeze the object physics and then grab it
-			grabbable_body.hide()
-			
 
 
-#			print("Beak : test 4")
-#			grabbable_body.freeze = true
-#			print("Beak : test 5")
-#			self.grabbed_object = grabbable_body
-#			print("Beak : test 6")
-			globals.active_grabbers.push_back(self)
-			print("Array length: " , globals.active_grabbers.size())
-#			var seedValue = "Number of Seeds Collected: "+ str(globals.active_grabbers.size()) 
-#			seed_counter.set_text(seedValue )
-#			print("Beak : test 7")
-	
+
 func _on_button_released(button_name: String) -> void:
-#	print("button released: " + button_name)
-	
-	# Stop if we have not clicked the grip button or we have no current grabbed object
-	if button_name != "grip_click" || self.grabbed_object == null:
+	if button_name != "grip_click":
 		return
 
-#	# Release the grabbed object and unfreeze it
-#	self.grabbed_object.show()
-#	self.grabbed_object.freeze = false
-#	self.grabbed_object.linear_velocity = Vector3(0, -0.1, 0)
-#	self.grabbed_object.angular_velocity = Vector3.ZERO
-#	self.grabbed_object = null
-#
-#	# Remove this grabber from the array of active grabbers
-#	var globals = get_node("/root/Globals")
-#	globals.active_grabbers.remove_at(globals.active_grabbers.find(self))
+	for obj in grabbed_objects:
+		obj.freeze = false
+		obj.linear_velocity = Vector3(0, -0.1, 0)
+		obj.angular_velocity = Vector3.ZERO
+		worm_grabbed = false
 
-#func collect(collectable):
-#	collected.emit(collectable)
+	grabbed_objects.clear()  # Clear the list of grabbed objects
+	var globals = get_node("/root/Globals")
+	globals.active_worms.remove_at(globals.active_twigs.find(self))
+	
+	
+# New function to handle seed interaction
+func _handle_seed_interaction(grabbable_body: RigidBody3D) -> void:
+	grabbable_body.collision_layer &= ~1
+	grabbable_body.hide()
+
+	var new_position = await _generate_valid_random_position()
+	grabbable_body.global_transform.origin = new_position
+	grabbable_body.collision_layer |= 1
+	grabbable_body.show()
+
+	globals.active_seeds.push_back(self)
+	print("Array length: ", globals.active_seeds.size())
+
+# New function to handle worm interaction
+func _handle_worm_interaction(grabbable_body: RigidBody3D) -> void:
+	if grabbed_objects.size() >= 3:
+		return  # Maximum of 3 worms
+
+	worm_grabbed = true
+	grabbed_objects.append(grabbable_body)
+	globals.active_worms.push_back(self)
+
+	if grabbed_objects.size() >= 3:
+		return  # Stop adding more if three are already grabbed

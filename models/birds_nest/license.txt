@@ -1,0 +1,11 @@
+Model Information:
+* title:	Birds Nest
+* source:	https://sketchfab.com/3d-models/birds-nest-a409e725d6074d678554a560b864fa58
+* author:	Thunder (https://sketchfab.com/thunderpwn)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Birds Nest" (https://sketchfab.com/3d-models/birds-nest-a409e725d6074d678554a560b864fa58) by Thunder (https://sketchfab.com/thunderpwn) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)

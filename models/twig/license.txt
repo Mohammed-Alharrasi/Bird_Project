@@ -1,0 +1,11 @@
+Model Information:
+* title:	GART_PJ_TWIG_01
+* source:	https://sketchfab.com/3d-models/gart-pj-twig-01-007c76ffa8dc4493b1f1018cdde51e2d
+* author:	peijee (https://sketchfab.com/peijee)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "GART_PJ_TWIG_01" (https://sketchfab.com/3d-models/gart-pj-twig-01-007c76ffa8dc4493b1f1018cdde51e2d) by peijee (https://sketchfab.com/peijee) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
