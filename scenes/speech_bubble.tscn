@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dadojs8c4qxvi"]
+
+[ext_resource type="Script" path="res://scenes/speech_bubble.gd" id="1_ver75"]
+[ext_resource type="Texture2D" uid="uid://bb0rstb0x0l2s" path="res://materials/white_speech_bubble.png" id="2_pu6x0"]
+[ext_resource type="Script" path="res://scenes/Label.gd" id="3_jf8k1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7o7c3"]
+viewport_path = NodePath("SubViewport")
+
+[node name="speech_bubble" type="Sprite3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+billboard = 2
+texture = SubResource("ViewportTexture_7o7c3")
+script = ExtResource("1_ver75")
+
+[node name="LetterDisplayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
+
+[node name="speech_bubble" type="MarginContainer" parent="SubViewport/CanvasLayer"]
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SubViewport/CanvasLayer/speech_bubble"]
+layout_mode = 2
+texture = ExtResource("2_pu6x0")
+region_rect = Rect2(0, 0, 378, 378)
+patch_margin_left = 252
+patch_margin_top = 126
+patch_margin_right = 63
+patch_margin_bottom = 126
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer/speech_bubble"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Label" type="Label" parent="SubViewport/CanvasLayer/speech_bubble/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("3_jf8k1")
+
+[connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

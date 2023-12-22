@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck0uuiwrs1yyj"]
+
+[ext_resource type="Texture2D" uid="uid://bht6842eds1uc" path="res://models/bird_poop.png" id="1_3e316"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ylh32"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hogvm"]
+transparency = 1
+albedo_texture = ExtResource("1_3e316")
+
+[node name="bird_poop" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ylh32")
+surface_material_override/0 = SubResource("StandardMaterial3D_hogvm")

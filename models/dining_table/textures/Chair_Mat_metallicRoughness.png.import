@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://ch1x08al1megv"
+path.s3tc="res://.godot/imported/Chair_Mat_metallicRoughness.png-2fc68197f58a2380d16e63429d5c9a6b.s3tc.ctex"
+path.etc2="res://.godot/imported/Chair_Mat_metallicRoughness.png-2fc68197f58a2380d16e63429d5c9a6b.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://models/dining_table/textures/Chair_Mat_metallicRoughness.png"
+dest_files=["res://.godot/imported/Chair_Mat_metallicRoughness.png-2fc68197f58a2380d16e63429d5c9a6b.s3tc.ctex", "res://.godot/imported/Chair_Mat_metallicRoughness.png-2fc68197f58a2380d16e63429d5c9a6b.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=8
+roughness/src_normal="res://models/dining_table/textures/Chair_Mat_normal.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

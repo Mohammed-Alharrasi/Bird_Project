@@ -17,3 +17,17 @@ courtyard environment - dylan with blender
 "Wooden Park Bench" (https://skfb.ly/oCV7C) by TheMadraver is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
 https://godotshaders.com/shader/player-vignette/
+
+https://www.flaticon.com/free-icons/speech-bubble speech bubble icon created by Graphix Dxinerz - Flaticon
+
+text box - https://www.youtube.com/watch?v=1DRy5An_6DU
+
+invisible background and billboarding - https://www.youtube.com/watch?v=ilBCnt_WE58
+
+https://www.middlebury.edu/big-bird
+
+"Fancy Picture Frame" (https://skfb.ly/6QZpO) by Jamie McFarlane is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Dining Table Set" (https://skfb.ly/6WDsU) by Jainesh Pathak is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+https://www.audubon.org/magazine/summer-2022/bird-poop-next-frontier-avian-conservation
